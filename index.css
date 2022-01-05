@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+  text-align: center;
+}
+.title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 60px;
+  font-weight: 600;
+}
+a {
+  color: black;				
+  text-decoration: none;
+}
+div {
+  font-size: 20px;
+}
+
+.game-list {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: auto;
+}
+
+.game-list a {
+  margin: 20px 0;
+  padding: 10px;
+
+  border: 5px black solid;
+  border-radius: 20px;
+  font-size: 40px;
+}
+
+.game-list .tris {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  box-shadow: 0 5px 1px black;
+}
+
+
+.game-list .snake {
+  font-family: 'Fredoka One', cursive;
+  font-weight: 600;
+  color: #f33;
+  -webkit-text-stroke: 2px darkred;
+  background-color: #aad751;
+  
+  border: 5px black solid;
+  box-shadow: 0 5px 1px black;
+}

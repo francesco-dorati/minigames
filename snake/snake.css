@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+  background-color: #578a34;
+}
+
+/* back button */
+.back_button {
+  display: inline-block;
+  height: 50px;
+  width: 100px;
+
+  position: fixed;
+  top: 20px;
+  margin: 0 20px;
+  border: solid 3px #3c5f24; 
+  border-radius: 10px;
+
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: #a2d149;
+  box-shadow: 0 5px 1px #3c5f24;
+
+  cursor: pointer;
+}
+.back_button:hover {
+  background-color: #80b027;
+  color: #ddd;
+}
+
+/* head */
+.head_container {
+  width: 510px;
+  height: 80px;
+
+  display: flex;
+  justify-content: space-between;
+
+  background-color: #aad751;
+  margin: auto;
+  margin: 30px auto 0 auto;
+  border: 5px #3c5f24 solid;
+  border-radius: 15px;
+  box-shadow: 0 10px 1px #3c5f24;
+}
+.title {
+  margin: auto 20px;
+
+  color: #f33; 
+  font-family: 'Fredoka One', cursive;
+  font-size: 50px;
+  font-weight: 500;
+  -webkit-text-stroke: 3px darkred;
+  text-shadow: 0 5px 1px #00000050;
+}
+.title span {
+  margin: 0 2.5px;
+}
+.score_container {
+  margin: 0 50px; 
+}
+.score_icon {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin: 20px 15px 20px 30px;
+  
+  box-sizing: border-box;
+  box-shadow: 0 5px 1px #00000050;
+  
+  background-color: red;
+  border: darkred 3px solid;
+  border-radius: 15px;
+}
+.score_number {
+  display: inline-block;
+  margin: 17px 0;
+  vertical-align: top;
+
+  color: white;
+  font-family: 'Roboto Slab', serif;
+  font-size: 30px;
+  font-weight: 500;
+  text-shadow: 0 3px 1px #00000050, 0 0 3px #00000050;
+}
+
+/* board */
+#board {
+  width: 510px;
+  height: 510px;
+
+  margin: auto;
+  margin-top: 20px;
+
+  position: relative;
+
+  display: grid; 
+  gap: 0px;
+  grid-template-columns: repeat(15, auto);
+  grid-template-rows: repeat(15, auto);
+
+  border-radius: 15px;
+  box-shadow: 0 15px 1px #3c5f24;
+  border: 5px solid #3c5f24;
+}
+.cell_dark {
+  background-color: #a2d149;
+}
+.cell_light {
+  background-color: #aad751;
+}

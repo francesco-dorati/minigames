@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Webpage</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="tris.css">
+	</head>
+	<body>
+		<button class="button back_button" onclick="window.location.href='../index.html'">
+			Back
+		</button>
+		<h1 class="turn_banner">Player: <span id="turn" style="color:red;">A</span></h1>
+		<h1 style="display:none;" id="winner_banner">Winner: <span id="winner"></span></h1>
+		<table class="container">
+		<tr>
+			<td id="1"></td>
+			<td id="2"></td>
+			<td id="3"></td>
+		</tr>
+		<tr>
+			<td id="4"></td>
+			<td id="5"></td>
+			<td id="6"></td>
+		</tr>
+		<tr>
+			<td id="7"></td>
+			<td id="8"></td>
+			<td id="9"></td>
+		</tr>
+			<!-- <div class="cell" id="1" onclick="click_box(this.id)"></div>
+			<div class="cell" id="2" onclick="click_box(this.id)"></div>
+			<div class="cell" id="3" onclick="click_box(this.id)"></div>
+			<div class="cell" id="4" onclick="click_box(this.id)"></div>
+			<div class="cell" id="5" onclick="click_box(this.id)"></div>
+			<div class="cell" id="6" onclick="click_box(this.id)"></div>
+			<div class="cell" id="7" onclick="click_box(this.id)"></div>
+			<div class="cell" id="8" onclick="click_box(this.id)"></div>
+			<div class="cell" id="9" onclick="click_box(this.id)"></div> -->
+		</table>
+		
+		
+		
+		<script type="text/javascript">
+		turn = 0
+		winner = null
+		function click_box(id) {
+			if (winner)
+				return
+				
+			box = document.getElementById(id)
+			
+			if (box.classList.contains('playerA') || box.classList.contains('playerB'))
+				return false
+			
+			box.classList.add(turn == 0 ? 'playerA' : 'playerB')
+			check_winner()
+			if (!winner) next_turn()
+		}
+		
+		function check_winner() {
+			cells = [
+				[document.getElementById("1"), document.getElementById("2"), document.getElementById("3")], 
+				[document.getElementById("4"), document.getElementById("5"), document.getElementById("6")], 
+				[document.getElementById("7"), document.getElementById("8"), document.getElementById("9")]
+			]
+
+			for (let y in cells) {
+				y = parseInt(y)
+				const row = cells[y] 
+				for (let x in row) {
+					x = parseInt(x)
+					const cell = row[x]
+
+					// right
+					if (x == 0) {
+						playerAWon = cell.classList.contains('playerA') && 
+									row[x + 1].classList.contains('playerA') && 
+									row[x + 2].classList.contains('playerA')
+					
+						playerBWon = cell.classList.contains('playerB') && 
+									row[x + 1].classList.contains('playerB') && 
+									row[x + 2].classList.contains('playerB')
+									
+						if (playerAWon) {
+							win(0)
+							return
+						} else if (playerBWon) {
+							win(1)
+							return
+						}
+					}
+					
+					// oblique right
+					if (x == 0 && y == 0) {
+						playerAWon = cell.classList.contains('playerA') && 
+									cells[y + 1][x + 1].classList.contains('playerA') && 
+									cells[y + 2][x + 2].classList.contains('playerA')
+									
+						playerBWon = cell.classList.contains('playerB') && 
+									cells[y + 1][x + 1].classList.contains('playerB') && 
+									cells[y + 2][x + 2].classList.contains('playerB')
+						
+						if (playerAWon) {
+							win(0)
+							return
+						} else if (playerBWon) {
+							win(1)
+							return
+						}
+					} 
+					
+					// down
+					if (y == 0) {
+						playerAWon = cell.classList.contains('playerA') && 
+									cells[y + 1][x].classList.contains('playerA') && 
+									cells[y + 2][x].classList.contains('playerA')
+									
+						playerBWon = cell.classList.contains('playerB') && 
+									cells[y + 1][x].classList.contains('playerB') && 
+									cells[y + 2][x].classList.contains('playerB')
+						
+						if (playerAWon) {
+							win(0)
+							return
+						} else if (playerBWon) {
+							win(1)
+							return
+						}
+					}
+					
+					// oblique left
+					if (y == 0 && x == 2) {
+						playerAWon = cell.classList.contains('playerA') && 
+									cells[y + 1][x - 1].classList.contains('playerA') && 
+									cells[y + 2][x - 2].classList.contains('playerA')
+									
+						playerBWon = cell.classList.contains('playerB') && 
+									cells[y + 1][x - 1].classList.contains('playerB') && 
+									cells[y + 2][x - 2].classList.contains('playerB')
+						
+						if (playerAWon) {
+							win(0)
+							return
+						} else if (playerBWon) {
+							win(1)
+							return
+						}
+					}
+				}
+			}
+		}
+		
+		function win(n) {
+			winner = n
+			document.getElementById('winner_banner').style.display = 'block'
+			document.getElementById('winner').innerHTML = n == 0 ? 'A' : 'B'
+			document.getElementById('winner_banner').style.color = n == 0 ? 'red' : 'green'
+		}
+		
+		function next_turn() {
+			turn = (turn + 1) % 2
+			document.getElementById('turn').innerHTML = turn == 0 ? 'A' : 'B'
+			document.getElementById('turn').style.color = turn == 0 ? 'red' : 'green'
+		}
+		</script>
+
+	</body>
+</html>

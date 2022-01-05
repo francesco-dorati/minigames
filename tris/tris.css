@@ -1,0 +1,82 @@
+h1 {
+  text-align: center;
+}
+.turn_banner {
+  margin-top: 100px;
+}
+.back {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+.back:hover {
+  text-decoration: underline;
+}
+
+.playerA {
+  background-color: red;
+}
+.playerB {
+  background-color: green;
+}
+
+
+.back_button {
+  display: inline-block;
+  height: 50px;
+  width: 100px;
+  
+  position: fixed;
+  top: 20px;
+  margin: 0 20px;
+  border: solid 3px black; 
+  border-radius: 10px;
+  
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: white;
+  box-shadow: 0 5px 1px black;
+  
+  cursor: pointer;
+}
+
+.container {
+  width: 350px;
+  height: 350px;
+  
+  margin: auto;
+  
+  box-sizing: border-box;
+  
+  border-radius: 15px;
+  box-shadow: 0 15px 1px black;
+  border: 5px solid black;
+
+  border-collapse: separate;
+}
+
+.container td {
+  border-left: black 3px solid;
+  border-top: black 3px solid;
+  
+  cursor: pointer;
+}
+
+tr:first-child {
+  border-left: none;
+}
+
+/* #1 {
+  border-radius: 20px 0 0 0;
+}
+#3 {
+  border-radius: 0 20px 0 0;
+}
+#7 {
+  border-radius: 0 0 20px 0;
+}
+#9 {
+  border-radius: 0 0 0 20px;
+} */
