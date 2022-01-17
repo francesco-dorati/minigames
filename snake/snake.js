@@ -1,13 +1,15 @@
-const GRID_SIZE = 15
+// import Board from "../board.js"
 
+// new Board(3)
+
+const GRID_SIZE = 15
 class Board {
   constructor() {
     // create grid
     const html_board = document.getElementById('board')
     for (let y = 0; y < GRID_SIZE; y++) {
       for (let x = 0; x < GRID_SIZE; x++) {
-        const color = ((y % 2) + x) % 2 == 0 ? 'light' : 'dark' 
-        html_board.innerHTML += '<div class="cell_' + color + '" id="' + y + '-' + x + '"></div>'
+        html_board.innerHTML += '<div class="cell" id="' + y + '-' + x + '"></div>'
       }
     }
 

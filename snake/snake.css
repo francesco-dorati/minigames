@@ -106,9 +106,9 @@ body {
   box-shadow: 0 15px 1px #3c5f24;
   border: 5px solid #3c5f24;
 }
-.cell_dark {
+.cell:nth-child(even) {
   background-color: #a2d149;
 }
-.cell_light {
+.cell:nth-child(odd) {
   background-color: #aad751;
 }
