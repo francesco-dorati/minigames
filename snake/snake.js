@@ -1,78 +1,24 @@
-// import Board from "../board.js"
-
-// new Board(3)
+import Board from "../board.js"
 
 const GRID_SIZE = 15
-class Board {
-  constructor() {
-    // create grid
-    const html_board = document.getElementById('board')
-    for (let y = 0; y < GRID_SIZE; y++) {
-      for (let x = 0; x < GRID_SIZE; x++) {
-        html_board.innerHTML += '<div class="cell" id="' + y + '-' + x + '"></div>'
-      }
-    }
-
-    // round corners
-    document.getElementById('0-0').style.borderRadius = '15px 0 0 0'
-    document.getElementById('0-0').style.boxShadow = '0 0 15px balck'
-    document.getElementById('0-' + (GRID_SIZE - 1)).style.borderRadius = '0 15px 0 0'
-    document.getElementById((GRID_SIZE - 1) +'-0').style.borderRadius = '0 0 0 15px'
-    document.getElementById((GRID_SIZE - 1) +'-' + (GRID_SIZE - 1)).style.borderRadius = '0 0 15px 0'
-  }
-}
-
-class Element {
-  constructor(y, x, style={}) {
-    this.y = y
-    this.x = x
-
-    if (this.x < 0 || this.y < 0 || this.x > GRID_SIZE || this.y > GRID_SIZE) {
-      console.error('Got wrong coordinates.')
-    }
-
-    // create item iside specific cell
-    this.html_cell = document.getElementById(this.y + '-' + this.x)
-    this.html_element = this.html_cell.appendChild(document.createElement('div'))
-
-    // styles
-    this.style.position = 'absolute'
-    this.style.width = 'calc((510px / 15)'
-    this.style.height = 'calc(510px / 15)'
-    this.style.boxSizing = 'border-box'
-    this.style.boxShadow = '0 5px 1px #00000050'
-  }
-
-  get position() {
-    return {y: this.y, x: this.x}
-  }
-
-  get style() {
-    return this.html_element.style
-  }
-
-  remove() {
-    this.html_cell.removeChild(this.html_element)
-  }
-
-}
 
 class Snake {
-  constructor(y=7, x=3, direction='right') {
-    this.SNAKE_COLOR = '#4674e9' 
+  constructor(board, y=7, x=3, direction='right') {
+    this.board = board
     this.snake = [
-      new Element(y, x), 
-      new Element(y, x-1)
+      this.board.createElement(x, y), 
+      this.board.createElement(x-1, y)
     ]
     this.direction = direction
     this.render()
   }
+
   get head() {
     return this.snake[0]
   }
 
   get nextPosition() {
-    let {y, x} = this.head
+    let {x, y} = this.head
     switch (this.direction) {
       case 'left':
         x--
@@ -86,7 +32,7 @@ class Snake {
       case 'down':
         y++
     }
-    return {y, x}
+    return {x, y}
   }
 
   move() {
@@ -95,7 +41,7 @@ class Snake {
     this.snake.pop()
 
     // create new head
-    this.snake.splice(0, 0, new Element(this.nextPosition.y, this.nextPosition.x))
+    this.snake.splice(0, 0, this.board.createElement(this.nextPosition.x, this.nextPosition.y))
 
     // render snake
     this.render()
@@ -103,7 +49,7 @@ class Snake {
 
   grow() {
     // create new head
-    this.snake.splice(0, 0, new Element(this.nextPosition.y, this.nextPosition.x))
+    this.snake.splice(0, 0, this.board.createElement(this.nextPosition.x, this.nextPosition.y))
 
     // render snake
     this.render()
@@ -111,13 +57,13 @@ class Snake {
 
   render() {
     this.snake.forEach((e, i) => {
-      let backgroundColor = this.SNAKE_COLOR
-      let border = {
-        style: 'none',
-        color: 'darkblue',
-        size: '3px',
+      const style = {
+        'background-color': '#4674e9',
+        'border-radius': 'none',
+        'border-style': 'none',
+        'border-color': 'darkblue',
+        'border-size': '3px',
       }
-      let borderRadius = 'none'
 
       // head cell
       if (i == 0) {
@@ -125,106 +71,99 @@ class Snake {
         switch (this.direction) {
           // heads left 
           case 'left':
-            border.style = 'solid none solid solid'
-            borderRadius = '15px 0 0 15px'
+            style['border-style'] = 'solid none solid solid'
+            style['border-radius'] = '15px 0 0 15px'
             break
           case 'up':
-            border.style = 'solid solid none solid'
-            borderRadius = '15px 15px 0 0'
+            style['border-style'] = 'solid solid none solid'
+            style['border-radius'] = '15px 15px 0 0'
             break
           case 'right':
-            border.style = 'solid solid solid none'	
-            borderRadius = '0 15px 15px 0'
+            style['border-style'] = 'solid solid solid none'	
+            style['border-radius'] = '0 15px 15px 0'
             break
           case 'down':
-            border.style = 'none solid solid solid'
-            borderRadius = '0 0 15px 15px'
+            style['border-style'] = 'none solid solid solid'
+            style['border-radius'] = '0 0 15px 15px'
         }
 
       // tail cell
       } else if (i == this.snake.length - 1) {
         // previous element position
-        switch (JSON.stringify(this.snake[i - 1].position)) {
-          case JSON.stringify({y: e.y, x: e.x-1}): // left
-            border.style = 'solid solid solid none'	
-            borderRadius = '0 15px 15px 0'
-            break
-          case JSON.stringify({y: e.y-1, x: e.x}): // top
-            border.style = 'none solid solid solid'
-            borderRadius = '0 0 15px 15px'
-            break
-          case JSON.stringify({y: e.y, x: e.x+1}): // right
-            border.style = 'solid none solid solid'
-            borderRadius = '15px 0 0 15px'
-            break
-          case JSON.stringify({y: e.y+1, x: e.x}): // bottom
-            border.style = 'solid solid none solid'
-            borderRadius = '15px 15px 0 0'
+        const prev = this.snake[i - 1]
+        if (prev.x == e.x-1 && prev.y == e.y) { // left
+            style['border-style'] = 'solid solid solid none'	
+            style['border-radius'] = '0 15px 15px 0'
+        } else if (prev.x == e.x && prev.y == e.y-1){ // top
+            style['border-style'] = 'none solid solid solid'
+            style['border-radius'] = '0 0 15px 15px'
+        } else if (prev.x == e.x+1 && prev.y == e.y) { // right
+            style['border-style'] = 'solid none solid solid'
+            style['border-radius'] = '15px 0 0 15px'
+        } else if (prev.x == e.x && prev.y == e.y+1) { // bottom
+            style['border-style'] = 'solid solid none solid'
+            style['border-radius'] = '15px 15px 0 0'
         }	
 
       // middle element
       } else {
         // check previous and next elements
-        const prev = this.snake[i - 1].position
-        const next = this.snake[i + 1].position
+        const prev = this.snake[i - 1]
+        const next = this.snake[i + 1]
 
         // same line (|)
         if (prev.x == next.x) {
-          border.style = 'none solid none solid'
-          borderRadius = '0'
+          style['border-style'] = 'none solid none solid'
+          style['border-radius'] = '0'
 
         // same line (-)
         } else if (prev.y == next.y) {
-          border.style = 'solid none solid none'
-          borderRadius = '0'
+          style['border-style'] = 'solid none solid none'
+          style['border-radius'] = '0'
         } 
 
         // angle (/)
         else if (prev.y == next.y-1 && prev.x == next.x+1)
           if (e.y == prev.y) { // (|^)
-            border.style = 'solid none none solid'
-            borderRadius = '15px 0 0 0'
+            style['border-style'] = 'solid none none solid'
+            style['border-radius'] = '15px 0 0 0'
           } else { // (_|)
-            border.style = 'none solid solid none'
-            borderRadius = '0 0 15px 0'
+            style['border-style'] = 'none solid solid none'
+            style['border-radius'] = '0 0 15px 0'
           }
           
         // angle (/)
         else if (prev.y == next.y+1 && prev.x == next.x-1) 
           if (e.y == prev.y) { // (_|)
-            border.style = 'none solid solid none'
-            borderRadius = '0 0 15px 0'
+            style['border-style'] = 'none solid solid none'
+            style['border-radius'] = '0 0 15px 0'
           } else { // (|^) 
-            border.style = 'solid none none solid'
-            borderRadius = '15px 0 0 0'
+            style['border-style'] = 'solid none none solid'
+            style['border-radius'] = '15px 0 0 0'
           }
 
         // angle (\)
         else if (prev.y == next.y-1 && prev.x == next.x-1) 
           if (e.y == prev.y) { // (^|)
-            border.style = 'solid solid none none'
-            borderRadius = '0 15px 0 0'
+            style['border-style'] = 'solid solid none none'
+            style['border-radius'] = '0 15px 0 0'
           } else { // (|_)
-            border.style = 'none none solid solid'
-            borderRadius = '0 0 0 15px'
+            style['border-style'] = 'none none solid solid'
+            style['border-radius'] = '0 0 0 15px'
           }
 
         // angle (\)
         else if (prev.y == next.y+1 && prev.x == next.x+1) 
           if (e.y == prev.y) { // (|_)
-            border.style = 'none none solid solid'
-            borderRadius = '0 0 0 15px'
+            style['border-style'] = 'none none solid solid'
+            style['border-radius'] = '0 0 0 15px'
           } else { // (^|) 
-            border.style = 'solid solid none none'
-            borderRadius = '0 15px 0 0'
+            style['border-style'] = 'solid solid none none'
+            style['border-radius'] = '0 15px 0 0'
           }
       }
 
-      e.style.backgroundColor = backgroundColor
-      e.style.borderRadius = borderRadius
-      e.style.borderStyle = border.style
-      e.style.borderColor = border.color
-      e.style.borderSize = border.size
+      e.style(style);
     });
   }
 
@@ -242,31 +181,32 @@ class Snake {
   }
 }
 
-class Food {
-  constructor(x=null, y=null) {
-    y = y || parseInt((Math.random() * (GRID_SIZE - 2)) + 1)
-    x = x || parseInt((Math.random() * (GRID_SIZE - 2)) + 1)
-
-    this.food = new Element(y, x)
-    this.food.style.backgroundColor = 'red'
-    this.food.style.border = 'darkred 3px solid'
-    this.food.style.borderRadius = '15px'
-  }
-
-  get position() {
-    return {y: this.food.y, x: this.food.x}
-  }
-
-  remove() {
-    this.food.remove()
-  }
-}
-
 class Game {
   constructor() {
-    this.board = new Board()
-    this.snake = new Snake()
-    this.food = new Food()
+    this.board = new Board(15)
+      .style({
+        'width': '510px',
+        'height': '510px',
+        'margin': 'auto',
+        'margin-top': '20px',
+        'border-radius': '15px',
+        'box-shadow': '0 15px 1px #3c5f24',
+        'border': '5px solid #3c5f24',
+      })
+      .cellStyle({
+        'border': '0'
+      })
+    this.snake = new Snake(this.board)
+    
+    this.food = this.board
+      .createElement(...this.board.randomCoordinates)
+      .style({
+        'background-color': 'red',
+        'border': 'darkred 3px solid',
+        'border-radius': '15px',
+        'box-shadow': '0 5px 1px #00000050',
+      })
+    
     this.speed = 200
     this.points = 0
 
@@ -321,13 +261,12 @@ class Game {
       }
 
       // if eats
-      if (this.snake.nextPosition.y == this.food.position.y && this.snake.nextPosition.x == this.food.position.x) {
+      if (this.snake.nextPosition.y == this.food.y && this.snake.nextPosition.x == this.food.x) {
         this.snake.grow()
 
         do {
-          this.food.remove()
-          this.food = new Food()
-        } while (this.snake.includes(this.food.position))
+          this.food.move(...this.board.randomCoordinates) // move food
+        } while (this.snake.includes({x: this.food.x, y: this.food.y})) // repeat if food spawns on the snake
 
         this.speed /= 1.05
         
@@ -352,9 +291,8 @@ class Game {
 
     // generate new snake and food
     this.snake.remove()
-    this.food.remove()
-    this.snake = new Snake()
-    this.food = new Food()
+    this.snake = new Snake(this.board)
+    this.food.move(...this.board.randomCoordinates)
     this.speed = 200
     this.points = 0
 
@@ -372,4 +310,4 @@ class Game {
   }
 }
 
-game = new Game()
+const game = new Game()
