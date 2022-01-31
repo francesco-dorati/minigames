@@ -4,6 +4,10 @@ class Board {
 
     // create html grid
     this.board = document.getElementById('board')
+    if (!this.board) {
+      throw "No element with id='board'"
+    }
+
     for (let y = 0; y < this.size; y++) {
       for (let x = 0; x < this.size; x++) {
         // create cell
@@ -30,6 +34,7 @@ class Board {
     this.cellStyle({
       'position': 'relative',
       'border': '2px solid black',
+      'background-color': 'white',
     })
   }
 
@@ -53,10 +58,11 @@ class Board {
 
     // round corner cells
     if (styleDict['border-radius']) {
-      document.getElementById('0;0').style.borderRadius = `${styleDict['border-radius']} 0 0 0`
-      document.getElementById(`0;${this.size-1}`).style.borderRadius = `0 0 0 ${styleDict['border-radius']}`
-      document.getElementById(`${this.size-1};0`).style.borderRadius = `0 ${styleDict['border-radius']} 0 0`
-      document.getElementById(`${this.size-1};${this.size-1}`).style.borderRadius = `0 0 ${styleDict['border-radius']} 0`
+      const radius = `${parseInt(styleDict['border-radius'].replace('px', '')) - 5}px`
+      document.getElementById('0;0').style.borderRadius = `${radius} 0 0 0`
+      document.getElementById(`0;${this.size-1}`).style.borderRadius = `0 0 0 ${radius}`
+      document.getElementById(`${this.size-1};0`).style.borderRadius = `0 ${radius} 0 0`
+      document.getElementById(`${this.size-1};${this.size-1}`).style.borderRadius = `0 0 ${radius} 0`
     }
     return this
   }
@@ -72,8 +78,20 @@ class Board {
     return this
   }
 
-  render() {
+  onCellClick(callback) {
+    for (let i = 0; i < this.board.childElementCount; i++) {
+      const cell = this.board.children[i]
+      cell.addEventListener('click', (e) => callback(e.originalTarget.id))
+    }
+  }
 
+  reset() {
+    for (let i = 0; i < this.board.childElementCount; i++) {
+      const cell = this.board.children[i]
+      while (cell.lastChild) {
+        cell.removeChild(cell.lastChild)
+      }
+    }
   }
 }
 
@@ -120,6 +138,11 @@ class Element {
       this.element.style[attr] = styleDict[attr] 
     }
 
+    return this
+  }
+
+  addClass(className) {
+    this.element.classList.add(className)
     return this
   }
 
