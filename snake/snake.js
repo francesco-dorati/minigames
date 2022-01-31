@@ -59,10 +59,12 @@ class Snake {
     this.snake.forEach((e, i) => {
       const style = {
         'background-color': '#4674e9',
+        'box-shadow': '0 5px 1px #00000050',
         'border-radius': 'none',
         'border-style': 'none',
         'border-color': 'darkblue',
         'border-size': '3px',
+        'z-index': '2',
       }
 
       // head cell
