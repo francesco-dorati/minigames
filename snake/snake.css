@@ -88,8 +88,8 @@ body {
 }
 
 .cell:nth-child(even) {
-  background-color: #a2d149;
+  background-color: #a2d149 !important;
 }
 .cell:nth-child(odd) {
-  background-color: #aad751;
+  background-color: #aad751 !important;
 }
