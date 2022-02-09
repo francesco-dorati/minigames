@@ -23,7 +23,7 @@
   font-size: 18px;
   font-weight: 600;
   background-color: white;
-  box-shadow: 0 5px 1px black;
+  box-shadow: 7px 7px 1px black;
   
   cursor: pointer;
 }
@@ -41,7 +41,7 @@
   font-size: 18px;
   font-weight: 600;
   background-color: red;
-  box-shadow: 0 5px 1px darkred;
+  box-shadow: 5px 5px 1px darkred;
   
   cursor: pointer;
 }
@@ -54,6 +54,7 @@
   margin: 60px auto 20px auto;
   border: solid 4px black; 
   border-radius: 10px;
+  box-shadow: 7px 7px 1px black;
   
   color: black;
   font-size: 18px;
