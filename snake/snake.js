@@ -185,7 +185,7 @@ class Snake {
 
 class Game {
   constructor() {
-    this.board = new Board(15)
+    this.board = new Board(15, 15)
       .style({
         'width': '510px',
         'height': '510px',

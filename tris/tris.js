@@ -20,15 +20,18 @@ const STYLEB = {
 
 let turn = 0
 let winner = null
-const b = new Board(3).style({
+const b = new Board(3, 3).style({
   'width': '400px',
   'height': '400px',
   'margin': 'auto',
   'margin-top': '10px',
   'border-radius': '15px',
-  'box-shadow': '0 15px 1px black',
+  'box-shadow': '20px 20px 1px #000000',
   'border': '5px solid black',
+}).cellStyle({
+  'cursor': 'pointer',
 })
+
 
 
 b.onCellClick((cellId) => {
@@ -138,7 +141,7 @@ function nextTurn() {
 
 document.getElementById('reset').addEventListener('click', () => {
   winner = null
-  turn = 0
+  turn = Math.random() < 0.5 ? 0 : 1
   const turn_icon = document.getElementById('turn_icon')
   turn_icon.style.backgroundColor = turn == 0 ? 'red' : 'blue'
   turn_icon.style.borderColor = turn == 0 ? 'darkred' : 'darkblue'

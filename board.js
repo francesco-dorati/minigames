@@ -1,6 +1,7 @@
 class Board {
-  constructor(size) {
-    this.size = size
+  constructor(width, height) {
+    this.width = width
+    this.height = height
 
     // create html grid
     this.board = document.getElementById('board')
@@ -8,8 +9,8 @@ class Board {
       throw "No element with id='board'"
     }
 
-    for (let y = 0; y < this.size; y++) {
-      for (let x = 0; x < this.size; x++) {
+    for (let y = 0; y < this.height; y++) {
+      for (let x = 0; x < this.width; x++) {
         // create cell
         const cell = document.createElement('div')
         cell.classList.add('cell')
@@ -22,8 +23,8 @@ class Board {
     this.style({
       'display': 'grid',
       'gap': '0px',
-      'grid-template-columns': `repeat(${this.size}, auto)`,
-      'grid-template-rows': `repeat(${this.size}, auto)`,
+      'grid-template-columns': `repeat(${this.width}, auto)`,
+      'grid-template-rows': `repeat(${this.height}, auto)`,
 
       'width': '500px',
       'height': '500px',
@@ -40,7 +41,7 @@ class Board {
 
   createElement(x, y) {
     // validate coordinates
-    if (x < 0 || y < 0 || x > this.size || y > this.size) {
+    if (x < 0 || y < 0 || x > this.width || y > this.height) {
       console.error(`Coordinates out of index: ${[x, y]}`)
     }
 
@@ -48,7 +49,7 @@ class Board {
   }
 
   get randomCoordinates() {
-    return [parseInt(Math.random() * (this.size - 1)), parseInt(Math.random() * (this.size - 1))]
+    return [parseInt(Math.random() * (this.width - 1)), parseInt(Math.random() * (this.height - 1))]
   }
 
   style(styleDict) {
@@ -60,9 +61,9 @@ class Board {
     if (styleDict['border-radius']) {
       const radius = `${parseInt(styleDict['border-radius'].replace('px', '')) - 5}px`
       document.getElementById('0;0').style.borderRadius = `${radius} 0 0 0`
-      document.getElementById(`0;${this.size-1}`).style.borderRadius = `0 0 0 ${radius}`
-      document.getElementById(`${this.size-1};0`).style.borderRadius = `0 ${radius} 0 0`
-      document.getElementById(`${this.size-1};${this.size-1}`).style.borderRadius = `0 0 ${radius} 0`
+      document.getElementById(`0;${this.height-1}`).style.borderRadius = `0 0 0 ${radius}`
+      document.getElementById(`${this.width-1};0`).style.borderRadius = `0 ${radius} 0 0`
+      document.getElementById(`${this.width-1};${this.height-1}`).style.borderRadius = `0 0 ${radius} 0`
     }
     return this
   }
