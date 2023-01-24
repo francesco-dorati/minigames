@@ -63,7 +63,7 @@ class Snake {
         'border-radius': 'none',
         'border-style': 'none',
         'border-color': 'darkblue',
-        'border-size': '3px',
+        'border-width': '3px',
         'z-index': '2',
       }
 

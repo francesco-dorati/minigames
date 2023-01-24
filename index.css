@@ -19,25 +19,35 @@ div {
 
 .game-list {
   display: flex;
-  flex-direction: column;
-  width: 300px;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 1000px;
   margin: auto;
 }
 
 .game-list a {
+  width: 200px;
+  height: 200px;
   margin: 20px 0;
   padding: 10px;
 
-  border: 5px black solid;
+  border: 7px black solid;
   border-radius: 20px;
   font-size: 40px;
+}
+
+.game-list a:hover {
+  position: relative;
+  top: 5px;
+  box-shadow: 0 10px 1px; 
 }
 
 .game-list .tris {
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-style: italic;
-  box-shadow: 0 5px 1px black;
+  box-shadow: 0 15px 1px black;
+
 }
 
 
@@ -48,6 +58,13 @@ div {
   -webkit-text-stroke: 2px darkred;
   background-color: #aad751;
   
-  border: 5px black solid;
-  box-shadow: 0 5px 1px black;
+  border: 7px #3c5f24 solid;
+  box-shadow: 0 15px 1px #3c5f24;
+
+  background-image: linear-gradient(45deg, #a2d149 25%, transparent 25%), linear-gradient(-45deg, #a2d149 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #a2d149 75%), linear-gradient(-45deg, transparent 75%, #a2d149 75%);
+  background-size: 50px 50px;
+  background-position: 0 0, 0 25px, 25px -25px, -25px 0px;
+}
+.game-list .snake:hover {
+  box-shadow: 0 10px 1px #3c5f24;  
 }

@@ -82,7 +82,7 @@ class Board {
   onCellClick(callback) {
     for (let i = 0; i < this.board.childElementCount; i++) {
       const cell = this.board.children[i]
-      cell.addEventListener('click', (e) => callback(e.originalTarget.id))
+      cell.addEventListener('click', (e) => callback(e.target.id))
     }
   }
 
