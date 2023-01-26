@@ -59,7 +59,7 @@ class Board {
 
     // round corner cells
     if (styleDict['border-radius']) {
-      const radius = `${parseInt(styleDict['border-radius'].replace('px', '')) - 5}px`
+      const radius = `${parseInt(styleDict['border-radius'].replace('px', ''))/2}px`
       document.getElementById('0;0').style.borderRadius = `${radius} 0 0 0`
       document.getElementById(`0;${this.height-1}`).style.borderRadius = `0 0 0 ${radius}`
       document.getElementById(`${this.width-1};0`).style.borderRadius = `0 ${radius} 0 0`
@@ -101,7 +101,7 @@ class Element {
     this.x = x
     this.y = y
 
-    this.element = document.createElement('div')
+    this.element = document.createElement('canvas')
 
     this.style({
       'position': 'absolute',

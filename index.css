@@ -1,14 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 body {
   text-align: center;
+  /* background-color: rgb(144, 205, 235); */
+  background-color: #39ABE5;
 }
 .title {
-  font-family: 'Fredoka One', cursive;
-  font-size: 60px;
-  font-weight: 600;
+  font-family: 'Righteous', cursive;
+  font-size: 70px;
+  font-weight: 800;
+  letter-spacing: 5px;
+  padding: 5px;
+  /* background-color: black; */
+  color: white;
+  border: 10px solid white;
+  /* border: 10px solid ⁄white; */
+  /* background-color: #66beeb; */
+  background-color: #39ABE5;
+  /* background-color: #39ABE5; */
+  border-radius: 20px;
+  margin: 20px 50px 40px 50px;
+  box-shadow: 0px 13px 1px #00000050;
+  text-shadow: 0px 7px 1px #00000050;
+  /* text-decoration: underline red; */
+  /* -webkit-text-stroke: 3px red; */
 }
+/* .title .red {
+  color: white;
+  -webkit-text-stroke: 5px red;
+} */
 a {
   color: black;				
   text-decoration: none;
@@ -26,11 +49,12 @@ div {
 }
 
 .game-list a {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   margin: 20px 0;
-  padding: 10px;
-
+  /* padding: 10px; */
+  
+  position: relative;
   border: 7px black solid;
   border-radius: 20px;
   font-size: 40px;
@@ -43,12 +67,56 @@ div {
 }
 
 .game-list .tris {
+  background-color: white;
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
   font-style: italic;
   box-shadow: 0 15px 1px black;
 
+  display: grid;
+  gap: 0px;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(3, auto);
+
 }
+.game-list .tris div {
+  border: 2px solid black;
+  position: relative;
+}
+.game-list .tris div .dot {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  box-sizing: content-box;
+  margin: auto;
+  inset: 0px;
+  border-radius: 40px;
+  box-shadow: 0 5px 1px #00000050;
+}
+.game-list .tris div .red {
+  background-color: red;
+  border: darkred 5px solid;
+}
+.game-list .tris div .blue {
+  background-color: blue;
+  border: darkblue 5px solid;
+}
+.game-list .tris .text {
+  position: absolute;
+  top: 50%; 
+  transform: translate(0, -50%);
+  margin: 0;
+
+  width: 100%;
+
+  font-size: 70px; 
+  font-weight: 700;
+  letter-spacing: 3px;
+  background-color: black;
+  color: white;
+  
+}
+
 
 
 .game-list .snake {
