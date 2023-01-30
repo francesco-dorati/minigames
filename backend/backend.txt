@@ -1,0 +1,8 @@
+- host a game
+    - user1 create lobby (lobby is created on backend and user1 is admin)
+    - user2 enters lobby 
+    - plays the game via socket
+
+available games:
+connect a game
+/chess/connect

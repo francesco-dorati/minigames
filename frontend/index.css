@@ -66,6 +66,8 @@ div {
   box-shadow: 0 10px 1px; 
 }
 
+
+/* TRIS */
 .game-list .tris {
   background-color: white;
   font-family: 'Raleway', sans-serif;
@@ -118,12 +120,8 @@ div {
 }
 
 
-
+/* SNAKE */
 .game-list .snake {
-  font-family: 'Fredoka One', cursive;
-  font-weight: 600;
-  color: #f33;
-  -webkit-text-stroke: 2px darkred;
   background-color: #aad751;
   
   border: 7px #3c5f24 solid;
@@ -135,4 +133,20 @@ div {
 }
 .game-list .snake:hover {
   box-shadow: 0 10px 1px #3c5f24;  
+}
+.game-list .snake .text {
+  position: relative;
+  top: 35%; 
+  /* transform: translate(0, -50%); */
+  margin: 0;
+
+  width: 100%; 
+
+  font-family: 'Fredoka One', cursive;
+  font-weight: 600;
+  color: #f33;
+  -webkit-text-stroke: 2px darkred;
+  font-size: 60px; 
+  letter-spacing: 2px;
+  /* text-decoration: underline; */
 }
