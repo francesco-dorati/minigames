@@ -1,4 +1,4 @@
-import Board from "../board.js"
+import Board from "./board.js"
 
 const STYLEA = {
   'background-color': 'red',
@@ -152,5 +152,45 @@ document.getElementById('reset').addEventListener('click', () => {
   b.reset()
 })
 
+// MAIN
+document.getElementById('to_online').addEventListener('click', () => {
+  const main = document.getElementById('main');
+  const online = document.getElementById('online');
+  main.style.display = 'none';
+  online.style.display = 'block';
+})
+
+document.getElementById('to_computer').addEventListener('click', () => {
+  const main = document.getElementById('main');
+  const computer = document.getElementById('computer');
+  main.style.display = 'none';
+  computer.style.display = 'block';
+})
+
+document.getElementById('to_locale').addEventListener('click', () => {
+  const main = document.getElementById('main');
+  const locale = document.getElementById('locale');
+  main.style.display = 'none';
+  locale.style.display = 'block';
+})
+
+// ONLINE
+document.getElementById('online_back').addEventListener('click', () => {
+  const main = document.getElementById('main');
+  const online = document.getElementById('online');
+
+  main.style.display = 'block';
+  online.style.display = 'none'; 
+})
+
+const input = document.getElementById('lobby_code')
+const button = document.getElementById('join')
+input.addEventListener('keyup', () => {
+  if(input.value.length == 6) {
+    button.classList.remove('disabled')
+  } else {
+    button.classList.add('disabled')
+  }
+})
 
 

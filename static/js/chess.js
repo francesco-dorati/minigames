@@ -1,4 +1,4 @@
-import Board from "../board.js"
+import Board from "./board.js"
 
 const GRID_SIZE = 15
 

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Webpage</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/tris.css')}}">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+	</head>
+	<body>
+		<button class="button back_button" onclick="window.location.href='/'">
+			Back
+		</button>
+
+		<!-- <div class="turn_container"><span>Turn:</span></div> -->
+		<!-- <h1 class="turn_banner">Player: <span id="turn" style="color:red;">A</span></h1>
+		<h1 style="display:none;" id="winner_banner">Winner: <span id="winner"></span></h1> -->
+		<div class="container">
+			<div class="game">
+				<button class="turn_container">
+					<span class="turn_text">Turn: </span>
+					<span class="turn_icon" id="turn_icon"></span>
+				</button>
+				<div id="board"></div>
+				<button class="button reset_button" id='reset'>Reset</button>
+			</div>
+	
+			<div class="options">
+				<!-- main -->
+				<div class="main" id="main">
+					<h1><i>TRIS</i></h1>
+					<div class="online" id="to_online">ONLINE</div> 
+					<div class="computer" id="to_computer">COMPUTER</div>
+					<div class="locale" id="to_locale">LOCALE</div>
+				</div>
+
+				<!-- online -->
+				<div class="online" id="online">
+					<div class="header">
+						<div id="online_back">&#8592;</div> 
+						<div>Online</div>
+					</div>
+					<div class="join_container">
+						<input type="text" class="join_code" maxlength="6" id="lobby_code"/>
+						<div class="join_button disabled" id="join">Join</div>
+					</div>
+					<div class="breakline">
+						<span>OR</span>
+					</div>
+					<div class="create_lobby">Create Lobby</div>
+					<!-- <div class="back" id="online_back">Back</div> -->
+				</div>
+
+				<div class="computer" id="computer">
+					computer
+				</div>
+				
+				<div class="locale" id="locale">
+					locale
+				</div>
+
+			
+				
+				<!-- lobby -->
+				<!-- <div class="lobby">
+
+					<div class="title">Local</div>
+					<div class="players">
+						<div class="player1">
+							<div class="icon"></div>
+							<span class="name">You</span>
+						</div>
+						<span>VS</span>
+						<div class="player2">							
+							<div class="icon"></div>
+							<span class="name">Friend</span>
+						</div>
+					</div> -->
+				</div>
+
+			</div>
+<!--
+enter code
+or
+create game
+	opponent
+
+
+
+	local
+
+	bot
+		difficulty
+
+	multiplayer
+		enter lobby (codice)
+		create lobby
+
+	--
+	
+	lobby multiplayer screen
+		players (2) and thir colors
+		settings of the game
+
+
+
+
+
+
+
+
+-->
+		</div>
+
+
+		<script type="module" src="{{url_for('static', filename='js/tris.js')}}"></script>
+	
+		
+
+	</body>
+</html>

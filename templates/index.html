@@ -3,12 +3,12 @@
 	<head>
 		<title>Webpage</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 	</head>
 	<body>
 		<h1 class="title"><span class="red">MINI</span>GAMES</h1>
 		<div class="game-list">
-			<a class="button tris" href="tris/tris.html">
+			<a class="button tris" href="/tris">
 				<div><div class="red dot"></div></div>		<div></div>		<div></div>
 
 				<div></div> 		<div></div> 	<div></div>
@@ -17,10 +17,10 @@
 			</a>
 
 
-			<a class="button snake" href="snake/snake.html">
+			<a class="button snake" href="/snake">
 				<span class="text">SNAKE</span>
 			</a>
-			<a class="button chess" href="chess/chess.html">CHESS</a>
+			<a class="button chess" href="/chess">CHESS</a>
 		</div>
 
 	</body>

@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+/* ICONS */
+/* .material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 500,
+  'GRAD' 0,
+  'opsz' 60
+} */
+
+
+body {
+  background-color: #ccc;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+/* BACK BUTTON */
+.back {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+.back:hover {
+  text-decoration: underline;
+}
+.back_button {
+  display: inline-block;
+  height: 50px;
+  width: 100px;
+  
+  position: fixed;
+  top: 20px;
+
+  margin: 0 20px;
+  border: solid 3px black; 
+  border-radius: 10px;
+  
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: white;
+  box-shadow: 7px 7px 1px black;
+  
+  cursor: pointer;
+}
+
+
+/* CONTAINER */
+.container {
+  display: flex;
+  /* justify-content: flex-end; */
+  justify-content: space-around;
+  height: 100vh;
+  width: 100vw;
+  box-sizing: content-box;
+  align-items: center;
+}
+
+/* GAME */
+.game {
+  width: 500px;
+  flex-grow: .5;
+  margin: 20px;
+  margin-left: 100px
+}
+.game .turn_container {
+  display: block;
+  height: 60px;
+  width: 130px;
+  
+  margin: 60px auto 20px auto;
+  border: solid 4px black; 
+  border-radius: 10px;
+  box-shadow: 7px 7px 1px black;
+  
+  color: black;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: white;
+
+  transform: translate(-135px, 0)
+}
+.game .turn_container .turn_text {
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+.game .turn_container .turn_icon {
+  display: inline-block;
+  background-color: red;
+  border: darkred 3px solid;
+  border-radius: 14px;
+  box-shadow: 0 3px 1px #00000050;
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  vertical-align: bottom;
+}
+.game .reset_button {
+  display: block;
+  height: 50px;
+  width: 100px;
+  
+  margin: 50px auto;
+  border: solid 3px darkred; 
+  border-radius: 10px;
+  
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: red;
+  box-shadow: 5px 5px 1px darkred;
+  
+  cursor: pointer;
+}
+
+/* OPTIONS */
+.options {
+  background-color: white;
+  border: black 10px solid;
+  width: 500px;
+  height: 90vh;
+  margin: auto 25px;
+  border-radius: 15px;
+  /* box-shadow: 15px 15px 1px black; */
+}
+/* 
+.options .lobby .title {
+  font-size: 40px;
+  font-weight: 600;
+  width: 100%;
+  padding: 20px;
+}
+.options .lobby .players{
+  display: flex;
+  justify-content: center;
+}
+.options .lobby .players>span {
+  margin: auto 0;
+  padding-bottom: 15px;
+  height: fit-content;
+  font-size: 25px;
+  font-weight: 900;
+}
+.options .lobby .players * {
+  margin: 10px 20px;
+
+}
+.options .lobby .players * .icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 3px solid black;
+} */
+
+
+/* OPTIONS - MAIN */
+/* .options #main {
+  /* display: none; *
+} */
+.options #main h1 {
+  font-size: 70px;
+  text-align: center;
+
+  position: relative;
+  /* left: -7.5px; */
+  width: 75%;
+  padding: 20px;
+  border-radius: 25px;
+  border: 7px black solid;
+  box-shadow: black 20px 20px 1px;
+  /* right: 30px;
+  border-radius: 15px 15px 0 0; */
+  /* left: calc(-50vw + 50%); */
+  text-align: center;
+  margin: 65px auto;
+  letter-spacing: 3px;
+  color: black;
+  background-color: white;
+  transition-duration: .1s;
+}
+.options #main h1:hover {
+  transition-duration: .1s;
+  transition-timing-function: linear;
+  /* position: relative; */
+  transform: translate(10px, 10px);
+  /* top: 10px;
+  left: 10px; */
+  box-shadow: black 10px 10px 1px;
+}
+/* buttons */
+.options #main div {
+  width: 85%;
+  margin-bottom: 30px;
+  
+  margin: 40px auto;
+  padding: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  
+  color: white;
+  border: 5px solid #666;
+  background-color: #999;
+  /* box-shadow: 3px 3px 1px #666; */
+  
+  text-align: center;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  /* font-style: italic; */
+  /* text-shadow: 3px 3px 1px #555; */
+  cursor: pointer;
+}
+.options #main div:hover {
+  position: relative;
+  top: 2px;
+  left: 2px;
+  /* box-shadow: 1px 1px 1px #666;  */
+}
+/* online */
+.options #main #to_online {
+  background-color: #4b4;
+  text-align: center;
+  /* width: 100%; */
+  /* width: 70%;
+  padding: 30px;  */
+  border-color: #171;
+  box-shadow: 7px 7px 1px #171;
+  /* color: #dfd; */
+  /* box-shadow: 3px 3px 1px #800; */
+}
+.options #main #to_online:hover {
+  box-shadow: 5px 5px 1px #171; 
+}
+.options #main #to_computer {
+  background-color: #33c;
+  text-align: center;
+  /* width: 100%; */
+  /* width: 70%;
+  padding: 30px;  */
+  border-color: #227;
+  box-shadow: 7px 7px 1px #227;
+  /* color: #dfd; */
+  /* box-shadow: 3px 3px 1px #800; */
+}
+.options #main #to_computer:hover {
+  box-shadow: 5px 5px 1px #227; 
+}
+.options #main #to_locale {
+  background-color: #c33;
+  text-align: center;
+  /* width: 100%; */
+  /* width: 70%;
+  padding: 30px;  */
+  border-color: #711;
+  box-shadow: 7px 7px 1px #711;
+  /* color: #dfd; */
+}
+.options #main #to_locale:hover {
+  box-shadow: 5px 5px 1px #711; 
+}
+
+/* OPTIONS - ONLINE */
+.options #online {
+  display: none;
+}
+.options #online .header {
+  margin: 30px 20px 50px 20px;
+}
+.options #online .header div {
+  display: inline;
+  font-size: 50px; 
+  text-align: left;
+  margin: 0px 10px;
+  font-weight: 700;
+  letter-spacing: 1px; 
+}
+.options #online #online_back {
+  cursor: pointer;
+}
+.options #online .join_container {
+  width: 100%;
+  margin: 40px auto;
+
+  display: flex;
+  /* flex-direction: row; */
+  /* align-items: center;⁄ */
+  justify-content: center;
+}
+.options #online .join_container input {
+  width: 200px;
+  height: 50px;
+  border-radius: 15px;
+  border: 3px solid black;
+  box-shadow: 7px 7px 1px black;
+
+  margin-right: 30px;
+  margin-bottom: 20px;
+  padding: 5px;
+
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-align: center;
+}
+.options #online .join_container input:focus {
+  border: 3px solid black;
+  outline: none;
+  transform: translate(2px, 2px);
+  box-shadow: 5px 5px 1px #000; 
+}
+/* .options #online .join_container input:hover {
+} */
+.options #online .join_container .join_button {
+  /* position: relative;
+  left: 2px; */
+
+  width: 80px;
+  height: 30px;
+  margin-top: 10px;
+  padding: 7px 15px;
+
+  border: 3px #171 solid;
+  box-shadow: 5px 5px 1px #171;
+  border-radius: 15px;
+
+  font-family: Arial;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-align: center;
+
+  color: #fff;
+  background-color: #4b4;
+  cursor: pointer;
+}
+.options #online .join_container .join_button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 1px #171;
+}
+.options #online .join_container .join_button.disabled {
+  background-color: #bbb;
+  border: 3px #777 solid;
+  box-shadow: 5px 5px 1px #777;
+  cursor: wait;
+}
+.options #online .join_container .join_button.disabled:hover {
+  background-color: #bbb;
+  border: 3px #777 solid;
+  box-shadow: 5px 5px 1px #777;
+  transform: none;
+  cursor: not-allowed;
+}
+.options #online .breakline {
+  margin: 40px auto;
+  width: 90%;
+  border-bottom: 2px solid black;
+  height: 11px;
+  text-align: center
+}
+.options #online span {
+  font-size: 20px;
+  font-weight: 700;
+  background-color: white;
+  padding: 0 10px;
+}
+.options #online .create_lobby {
+  width: 80%;
+  height: 40px;
+  margin: 60px auto;
+  padding: 5px;
+
+  font-family: Arial;
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background-color: #c33;
+  border-radius: 15px;
+  border: 3px #711 solid;
+  box-shadow: 5px 5px 1px #711;
+  cursor: pointer;
+}
+
+.options #online .create_lobby:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 1px #711;
+
+}
+
+.options #online .back {
+  position: absolute;
+  bottom: 60px;
+
+  width: 450px;
+  height: 30px;
+  margin: 0 18px;
+  padding: 5px;
+
+  font-family: Arial;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background-color: red;
+  border-radius: 15px;
+  border: 3px darkred solid;
+  cursor: pointer;
+}
+
+/* OPTIONS - COMPUTER */
+.options #computer {
+  display: none;
+}
+/* OPTIONS - LOCALE */
+.options #locale {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    flex-direction: column-reverse;
+    height: 200vh;
+  }
+  .options {
+    margin: 20px 0 0 0 ;
+  }
+}
+
